@@ -43,6 +43,8 @@ const MOCK_ACTIVITIES: Activity[] = [
   },
 ];
 
+const TICKET_BASE_PRICE = 90;
+
 const Index = () => {
   const [enrolledActivities, setEnrolledActivities] = useState<Set<string>>(new Set());
 
@@ -82,7 +84,7 @@ const Index = () => {
         
         <TicketSummary
           ticketNumber={1}
-          totalValue={totalValue}
+          totalValue={TICKET_BASE_PRICE}
           rules={["Selecione suas atividades", "Confirme o pagamento antes do tempo expirar"]}
         />
 
