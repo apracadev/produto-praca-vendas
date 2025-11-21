@@ -14,13 +14,13 @@ const TicketPurchase = () => {
         <div className="space-y-2">
           <h1 className="text-2xl font-bold text-foreground">Carrinho</h1>
           <div className="flex items-center justify-between">
-            <p className="text-sm text-primary font-medium">
+            <p className="text-sm text-success font-medium">
               1 ingresso. R$ {ticketPrice.toFixed(2)}
             </p>
             <Button 
               onClick={() => navigate("/activities")}
               size="sm"
-              className="text-sm"
+              className="bg-success hover:bg-success/90 text-success-foreground"
             >
               Continuar
             </Button>
@@ -63,13 +63,13 @@ const TicketPurchase = () => {
                 </div>
               </div>
               <div className="text-right">
-                <p className="text-sm font-bold text-primary">
+                <p className="text-sm font-bold text-success">
                   R$ {ticketPrice.toFixed(2)}
                 </p>
               </div>
             </div>
 
-            <button className="text-xs text-primary hover:underline flex items-center gap-1">
+            <button className="text-xs text-success hover:underline flex items-center gap-1">
               Editar detalhes e valores da taxa, quando aplicável
               <ChevronRight className="h-3 w-3" />
             </button>
@@ -124,7 +124,7 @@ const TicketPurchase = () => {
                 placeholder="Código do voucher/vale presente"
                 className="flex-1 text-xs px-3 py-2 border rounded-md bg-background"
               />
-              <Button size="sm" className="px-6">
+              <Button size="sm" className="px-6 bg-success hover:bg-success/90 text-success-foreground">
                 →
               </Button>
             </div>
@@ -153,7 +153,7 @@ const TicketPurchase = () => {
 
         {/* Continue Button */}
         <Button 
-          className="w-full py-6 text-base font-semibold"
+          className="w-full py-6 text-base font-semibold bg-success hover:bg-success/90 text-success-foreground"
           size="lg"
           onClick={() => navigate("/activities")}
         >
@@ -161,7 +161,7 @@ const TicketPurchase = () => {
         </Button>
 
         {/* Back Link */}
-        <button className="text-xs text-primary hover:underline flex items-center justify-center gap-1 w-full">
+        <button className="text-xs text-success hover:underline flex items-center justify-center gap-1 w-full">
           ← Voltar
         </button>
       </div>
