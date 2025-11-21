@@ -87,7 +87,7 @@ export const ActivityCard = ({
                 : "bg-success hover:bg-success/90 text-success-foreground"
             )}
           >
-            {isEnrolled ? "Cancelar inscrição" : "Se inscrever"}
+            {isEnrolled ? "Remover" : "Adicionar"}
           </Button>
         </div>
       </div>
