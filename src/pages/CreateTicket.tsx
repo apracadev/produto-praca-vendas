@@ -1,17 +1,18 @@
 import { useState } from "react";
-import { Calendar, Clock, Info } from "lucide-react";
+import { Info } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import Navbar from "@/components/Navbar";
+import { DateTimePicker } from "@/components/DateTimePicker";
 
 const CreateTicket = () => {
   const [salesPeriod, setSalesPeriod] = useState<"date" | "batch">("date");
-  const [availability, setAvailability] = useState<"public" | "invited" | "manual">("public");
+  const [startDateTime, setStartDateTime] = useState<Date>();
+  const [endDateTime, setEndDateTime] = useState<Date>();
 
   return (
     <div className="min-h-screen bg-background">
@@ -74,15 +75,6 @@ const CreateTicket = () => {
             <p className="text-success font-semibold">R$ 0,00</p>
           </div>
 
-          {/* Meia-entrada */}
-          <div className="flex items-center space-x-2">
-            <Checkbox id="half-price" />
-            <Label htmlFor="half-price" className="text-sm font-normal cursor-pointer">
-              Criar meia-entrada para esse ingresso
-            </Label>
-            <Info className="h-4 w-4 text-muted-foreground" />
-          </div>
-
           <Separator />
 
           {/* Período das vendas */}
@@ -103,96 +95,28 @@ const CreateTicket = () => {
             </RadioGroup>
           </div>
 
-          {/* Data de Início das Vendas */}
+          {/* Data e Hora de Início das Vendas */}
           <div className="space-y-2">
-            <Label htmlFor="start-date" className="text-sm font-medium">
-              Data de Início das Vendas <span className="text-destructive">*</span>
-            </Label>
-            <div className="relative">
-              <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                id="start-date"
-                type="date"
-                defaultValue="2025-11-06"
-                className="pl-10 text-sm"
-              />
-            </div>
-          </div>
-
-          {/* Hora de Início */}
-          <div className="space-y-2">
-            <Label htmlFor="start-time" className="text-sm font-medium">
-              Hora de Início <span className="text-destructive">*</span>
-            </Label>
-            <div className="relative">
-              <Clock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                id="start-time"
-                type="time"
-                defaultValue="15:15"
-                className="pl-10 text-sm"
-              />
-            </div>
-            <p className="text-xs text-muted-foreground">Horário de Brasília</p>
-          </div>
-
-          {/* Data de Término das Vendas */}
-          <div className="space-y-2">
-            <Label htmlFor="end-date" className="text-sm font-medium">
-              Data de Término das Vendas <span className="text-destructive">*</span>
-            </Label>
-            <div className="relative">
-              <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                id="end-date"
-                type="date"
-                defaultValue="2025-11-09"
-                className="pl-10 text-sm"
-              />
-            </div>
-          </div>
-
-          {/* Hora de Término */}
-          <div className="space-y-2">
-            <Label htmlFor="end-time" className="text-sm font-medium">
-              Hora de Término <span className="text-destructive">*</span>
-            </Label>
-            <div className="relative">
-              <Clock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                id="end-time"
-                type="time"
-                defaultValue="15:00"
-                className="pl-10 text-sm"
-              />
-            </div>
-            <p className="text-xs text-muted-foreground">Horário de Brasília</p>
-          </div>
-
-          <Separator />
-
-          {/* Disponibilidade do ingresso */}
-          <div className="space-y-3">
             <Label className="text-sm font-medium">
-              Disponibilidade do Ingresso: <span className="text-destructive">*</span>
+              Data e Hora de Início das Vendas <span className="text-destructive">*</span>
             </Label>
-            <RadioGroup value={availability} onValueChange={(v) => setAvailability(v as "public" | "invited" | "manual")}>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="public" id="public" />
-                <Label htmlFor="public" className="font-normal cursor-pointer">Para todo o público</Label>
-                <Info className="h-4 w-4 text-muted-foreground" />
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="invited" id="invited" />
-                <Label htmlFor="invited" className="font-normal cursor-pointer">Restrito a convidados</Label>
-                <Info className="h-4 w-4 text-muted-foreground" />
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="manual" id="manual" />
-                <Label htmlFor="manual" className="font-normal cursor-pointer">Para ser adicionado manualmente</Label>
-                <Info className="h-4 w-4 text-muted-foreground" />
-              </div>
-            </RadioGroup>
+            <DateTimePicker
+              date={startDateTime}
+              onDateChange={setStartDateTime}
+              placeholder="Selecione data e hora de início"
+            />
+          </div>
+
+          {/* Data e Hora de Término das Vendas */}
+          <div className="space-y-2">
+            <Label className="text-sm font-medium">
+              Data e Hora de Término das Vendas <span className="text-destructive">*</span>
+            </Label>
+            <DateTimePicker
+              date={endDateTime}
+              onDateChange={setEndDateTime}
+              placeholder="Selecione data e hora de término"
+            />
           </div>
 
           {/* Quantidade permitida por compra */}
