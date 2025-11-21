@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 
 import { PaymentTimer } from "@/components/PaymentTimer";
+import Navbar from "@/components/Navbar";
 
 const TicketPurchase = () => {
   const navigate = useNavigate();
@@ -11,7 +12,8 @@ const TicketPurchase = () => {
 
   return (
     <div className="min-h-screen bg-background pb-6">
-      <div className="max-w-md mx-auto px-4 py-6 space-y-4">
+      <Navbar />
+      <div className="max-w-md mx-auto px-4 py-6 pt-20 space-y-4">
         <PaymentTimer />
         {/* Header */}
         <div className="space-y-2">
