@@ -6,6 +6,7 @@ import { ActivityCard, Activity } from "@/components/ActivityCard";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft } from "lucide-react";
 import { toast } from "sonner";
+import Navbar from "@/components/Navbar";
 
 const MOCK_ACTIVITIES: Activity[] = [
   {
@@ -83,7 +84,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background pb-6">
-      <div className="max-w-md mx-auto px-4 py-6 space-y-4">
+      <Navbar />
+      <div className="max-w-md mx-auto px-4 py-6 pt-20 space-y-4">
         <Button
           variant="ghost"
           size="sm"
