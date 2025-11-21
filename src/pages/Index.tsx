@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { PaymentTimer } from "@/components/PaymentTimer";
 import { TicketSummary } from "@/components/TicketSummary";
 import { ActivityCard, Activity } from "@/components/ActivityCard";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft } from "lucide-react";
 import { toast } from "sonner";
 
 const MOCK_ACTIVITIES: Activity[] = [
@@ -46,6 +49,7 @@ const MOCK_ACTIVITIES: Activity[] = [
 const TICKET_BASE_PRICE = 90;
 
 const Index = () => {
+  const navigate = useNavigate();
   const [enrolledActivities, setEnrolledActivities] = useState<Set<string>>(new Set());
 
   const handleEnroll = (activityId: string) => {
@@ -80,6 +84,16 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background pb-6">
       <div className="max-w-md mx-auto px-4 py-6 space-y-4">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => navigate("/")}
+          className="mb-2 -ml-2"
+        >
+          <ChevronLeft className="h-4 w-4 mr-1" />
+          Voltar
+        </Button>
+        
         <PaymentTimer initialMinutes={10} />
         
         <TicketSummary
